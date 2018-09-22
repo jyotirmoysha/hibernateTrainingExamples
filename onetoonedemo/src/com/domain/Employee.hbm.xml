@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.domain.Employee" table="EMPLOYEE_DETAILS_1">
+	
+		<id name="id" type="java.lang.Long">
+			<column name="EMPLOYEE_ID" />
+			<generator class="identity" />
+		</id>
+		
+		<property name="name" type="java.lang.String">
+			<column name="EMPLOYEE_NAME" />
+		</property>
+
+		<one-to-one name="laptop" cascade="save-update,delete" class="com.domain.Laptop" />
+
+	</class>
+</hibernate-mapping>
+
+
+
+
+
+
+
+

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.domain.Course" table="COURSE_DETAILS">
+        <id name="courseId" type="java.lang.Long">
+            <column name="COURSE_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="COURSE_NAME" />
+        </property>
+        <set name="students" table="STUDENT_COURSE_DETAILS"
+        	 cascade="save-update" lazy="true">
+            <key>
+                <column name="COURSE_ID" />
+            </key>
+            <many-to-many column="STUDENT_ROLLNO" class="com.domain.Student" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.domain.Laptop" table="LAPTOP_DETAILS_2">
+
+        <id name="serialnumber" type="java.lang.Long">
+            <column name="LAPTOP_SERIALNUMBER" />
+           	<generator class="identity" />            
+        </id>
+
+        <property name="name" type="java.lang.String">
+            <column name="LAPTOP_NAME" />
+        </property>
+                
+    </class>
+</hibernate-mapping>
+
+
