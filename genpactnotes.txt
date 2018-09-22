@@ -1,0 +1,188 @@
+
+Hibernate:
+
+- ORM tools
+
+iBatis/mybatis
+toplink
+
+Oracle - JPA - JCP Community
+
+----------------------------
+
+DAO 
+JDBC (Autocommit:true)
+
+Step 1: 
+Load the driver
+
+Step 2:
+Get the connection
+
+Step 3: 
+Create the Statement/PreparedStatement/CallableStatement object
+
+Step 4:
+Execute the SQL Stmt
+
+Step 5: 
+close the connection
+
+
+Hibernate: (NHibernate)
+- abstract to JDBC
+
+(Autocommit:false)
+dialect - OracleDialect - Prepare SQL
+CRUD 
+
+HQL
+Criterian
+
+Cache
+
+--------------------------------------
+
+Architecture
+
+--------------------------------------
+C:\Program Files\Java\jdk1.8.0_171\db\bin
+
+startnetworkserver.bat
+stopnetworkserver.bat
+
+Add derbyclient.jar from lib folder in classpath
+
+--------------------------------------
+
+Connection con = DriverManager.getConnection(url, un, pass)
+
+5
+
+--------------------------------------
+
+hibernate.cfg.xml:
+
+driver, url, username, password, dialect
+
+--------------------------------------
+
+product.hbm.xml
+
+Mapping Object & Relational
+
+--------------------------------------
+
+JPA
+
+Annotation (1.5)
+
+
+@Entity
+@Table(name = "PRODUCT_DETAILS")
+@Id
+@Column(name = "PRODUCT_ID")
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+	
+--------------------------------------
+
+Composite Key:
+
+	<composite-id name="credentials"
+			class="com.domain.Credentials">
+			<key-property name="username"
+				column="USER_CREDENTAILS_USERNAME" type="string" />
+			<key-property name="password"
+				column="USER_CREDENTAILS_PASSWORD" type="string" />
+		</composite-id>
+
+-----------
+
+@Embeddable
+@EmbeddedId
+
+----------------------------------------------------
+
+Hibernate 1
+Hibernate 2
+Hibernate 3 - openSession
+
+2003
+Spring - HibernateTemplate - no need to close session
+
+Hibernate 3.2 - getCurrentSession
+
+----------------------------------------------------
+
+ThreadLocalSessionContext
+
+hibernate.current_session_context_class=thread 
+
+----------------------------------------------------
+
+Note: getCurrentSession  
+
+- select 
+
+beginTransaction()
+
+----------------------------------------------------
+
+
+Problem of Granularity:
+
+Customer_Details
+id
+name
+temporary_street
+temporary_city
+permanent_street
+permanent_city
+
+
+<component name="temporaryAddress" class="com.domain.Address">
+        	<property name="street" column="CUSTOMER_TEMP_STREET" />
+        	<property name="city" column="CUSTOMER_TEMP_CITY" />
+        </component>
+
+
+---------------
+
+@Embeddable, @Embedded
+
+----------------------------------------------------
+
+Problem of Inheritance:
+
+1) Table per class hierarchy (single table)
+- <subclass>
+
+Advantages:
+single sql stmt
+performance fast
+
+Disadvantages:
+Subclass attributes - column - notnull - false
+
+2) Table per sub class (three tables)
+- <joined-subclass>
+
+
+3) Table per concrete class (two tables)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

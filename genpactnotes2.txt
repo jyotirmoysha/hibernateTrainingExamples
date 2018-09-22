@@ -1,0 +1,199 @@
+
+STS/eclipse
+
+Help -> Eclipse MarketPlace
+
+Find [Hibernate]
+
+JBOSS Tools
+
+-------------------
+
+hibernate-release.zip lib
+
+-------------------
+
+Hibernate:
+
+- ORM tools
+
+iBatis/MyBatis
+Toplink
+
+-------------------
+
+ORM
+
+- JDBC
+
+Step 1: 
+Load the driver
+
+Step 2:
+Establish the connection
+
+Step 3: 
+Prepare the Statement/PreparedStatement/CallableStatement object
+
+Step 4:
+Execute
+
+Step 5: 
+ResultSet/RowSet
+
+Step 6:
+Close the connections
+
+--------------------------------------------
+
+Hibernate: 
+- abstraction to JDBC
+- autocommit:false
+
+Architecture:
+
+Core Components
+
+1) hibernate.cfg.xml:
+
+driver, url, username, password, dialect
+
+2) N.hbm.xml:
+
+mapping - object to relational mapping
+
+3) Configuration (DOM4J)
+
+- hibernate.cfg.xml (N.hbm.xml)
+- build SF
+
+4) Build SessionFactory (singleton, ServletContext, JNDI Registry)
+
+- per datasource
+- ThreadSafe
+- long lived object
+
+5) Open the Session 
+
+- CRUD operation
+	- save
+	- saveOrUpdate
+	- delete
+	- get
+
+- short life object
+- not thread safe
+
+6) Transaction
+
+7) Close the Session
+
+-------------------------------------
+
+Features:
+
+1) Creating the connection pool (datasource) - DriverManager
+
+2) Creating SQL Statements
+
+3) HibernateException - unchecked exception
+- SQLException wrapped
+
+-------------------------------------
+
+JPA: (JDK1.5)
+
+Specification
+
+Annotation
+
+-------------------------------------
+
+Hibernate 1
+Hibernate 2
+Hibernate 3
+
+openSession()
+
+2003
+Spring - HibernateTemplate - no need close session
+
+Hibernate 3.2
+
+getCurrentSession()
+
+<property name="hibernate.current_session_context_class">thread</property>
+
+
+----------------------------------
+
+ThreadLocal oracle docs
+
+--------------------------------------------------
+
+Composite Key:
+
+User_Details
+
+USER_USERNAME
+USER_PASSWORD
+USER_MOBILENUMBER
+
+<composite-id name="credentials" class="com.domain.Credentials">
+			<key-property name="username" column="USER_DETAILS_USERNAME" />
+			<key-property name="password" column="USER_DETAILS_PASSWORD" />
+		</composite-id>
+
+---------------
+
+@Embeddable, @EmbeddedId
+
+-------------------------------------------------
+
+Problem of Granularity/Component:
+
+Customer_Details
+
+id
+name
+temporary_address_street
+temporary_address_city
+permanent_address_street
+permanent_address_city
+
+<component name="temporaryAddress" class="com.domain.Address">
+        	<property name="street" column="CUSTOMER_TEMP_STREET" />
+        	<property name="city" column="CUSTOMER_TEMP_CITY" />
+        </component>
+
+--------------------
+
+@Embeddable, @Embedded
+
+--------------------------------------------------
+
+
+Problem of Inheritance:
+
+1) Table per class hierarchy (single table)
+- discriminator column
+
+<subclass>
+
+2) Table per sub class (three tables)
+3) Table per concrete class (two tables)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
