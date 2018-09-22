@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="com.domain.Customer" table="CUSTOMER_DETAILS">
+        <id name="id" type="java.lang.Long">
+            <column name="CUSTOMER_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="CUSTOMER_NAME" />
+        </property>
+        
+        <component name="temporaryAddress" class="com.domain.Address">
+        	<property name="street" column="CUSTOMER_TEMP_STREET" />
+        	<property name="city" column="CUSTOMER_TEMP_CITY" />
+        </component>
+        
+         <component name="permanentAddress" class="com.domain.Address">
+        	<property name="street" column="CUSTOMER_PERM_STREET" />
+        	<property name="city" column="CUSTOMER_PERM_CITY" />
+        </component>
+        
+    </class>
+</hibernate-mapping>

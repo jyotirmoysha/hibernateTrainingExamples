@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.domain.Flight" table="FLIGHT_DETAILS_1">
+		<id name="id" type="java.lang.Long">
+			<column name="FLIGHT_ID" />
+			<generator class="identity" />
+		</id>
+		
+		<discriminator column="FLIGHT_TYPE" type="string" length="20" />
+
+		<property name="name" type="java.lang.String">
+			<column name="FLIGHT_NAME" />
+		</property>
+		<property name="code" type="java.lang.String">
+			<column name="FLIGHT_CODE" />
+		</property>
+		
+		<subclass discriminator-value="domestic" name="com.domain.DomesticFlight">
+			<property name="fromCity" column="FLIGHT_DOMESTIC_FROM_CITY" not-null="true" />
+			<property name="toCity" column="FLIGHT_DOMESTIC_TO_CITY" not-null="true"/>
+		</subclass>
+		
+		<subclass discriminator-value="international" name="com.domain.InternationalFlight">
+			<property name="fromCountry" column="FLIGHT_INTER_FROM_COUNTRY" not-null="true"/>
+			<property name="toCountry" column="FLIGHT_INTER_TO_COUNTRY" not-null="true"/>
+		</subclass>
+		
+	</class>
+</hibernate-mapping>
+
+
+
+
+

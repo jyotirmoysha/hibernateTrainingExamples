@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.domain.Flight" abstract="true">
+		<id name="id" type="java.lang.Long">
+			<column name="FLIGHT_ID" />
+			<generator class="increment" />
+		</id>
+	
+		<property name="name" type="java.lang.String">
+			<column name="FLIGHT_NAME" />
+		</property>
+		<property name="code" type="java.lang.String">
+			<column name="FLIGHT_CODE" />
+		</property>
+		
+		<union-subclass name="com.domain.DomesticFlight"
+			 table="DOMESTIC_FLIGHT_DETAILS_3">
+			<property name="fromCity" column="FLIGHT_DOMESTIC_FROM_CITY" not-null="true" />
+			<property name="toCity" column="FLIGHT_DOMESTIC_TO_CITY" not-null="true"/>
+		</union-subclass>
+		
+		<union-subclass  name="com.domain.InternationalFlight"
+			table="INTERNATIONAL_FLIGHT_DETAILS_3">
+			<property name="fromCountry" column="FLIGHT_INTER_FROM_COUNTRY" not-null="true"/>
+			<property name="toCountry" column="FLIGHT_INTER_TO_COUNTRY" not-null="true"/>
+		</union-subclass>
+		
+	</class>
+</hibernate-mapping>
+
+
+
+
+
